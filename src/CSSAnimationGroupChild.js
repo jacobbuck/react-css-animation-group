@@ -16,24 +16,24 @@ class CSSAnimationGroupChild extends React.Component {
     node.style.animationPlayState = "paused";
 
     // Set new animation
-    requestAnimationFrame(() => {
-      node.style.animationName = animation.name;
-      node.style.animationDelay = animation.delay;
-      node.style.animationDirection = animation.direction;
-      node.style.animationDuration = animation.duration;
-      node.style.animationFillMode = animation.fillMode;
-      node.style.animationIterationCount = animation.iterationCount;
-      node.style.animationTimingFunction = animation.timingFunction;
-      node.style.animationPlayState = "running";
-    });
+    node.style.animationName = animation.name;
+    node.style.animationDelay = animation.delay;
+    node.style.animationDirection = animation.direction;
+    node.style.animationDuration = animation.duration;
+    node.style.animationFillMode = animation.fillMode;
+    node.style.animationIterationCount = animation.iterationCount;
+    node.style.animationTimingFunction = animation.timingFunction;
+    node.style.animationPlayState = "running";
 
-    // Call callback on animationend event, and only listen once.
-    node.addEventListener("animationend", function animationend(event) {
+    const animationEnd = event => {
       if (event.animationName === animation.name) {
         callback();
-        node.removeEventListener("animationend", animationend);
+        node.removeEventListener("animationend", animationEnd);
       }
-    });
+    };
+
+    // Call callback on animationend event, and only listen once.
+    node.addEventListener("animationend", animationEnd);
   }
 
   componentWillAppear(done) {
