@@ -2,9 +2,11 @@
   "name": "react-css-animation-group",
   "version": "0.0.1",
   "description": "Use CSS Animations when a React component enters or leaves the DOM.",
-  "main": "index.js",
+  "main": "lib/CSSAnimationGroup.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel --out-dir lib src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,7 +17,9 @@
     "css",
     "dom",
     "react",
-    "transition"
+    "react-component",
+    "transition",
+    "transition-group"
   ],
   "author": "Jacob Buck <buck.jacob@gmail.com>",
   "license": "MIT",
@@ -30,5 +34,10 @@
   "peerDependencies": {
     "react": "^15.6.0",
     "react-dom": "^15.6.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1"
   }
 }
