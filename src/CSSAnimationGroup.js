@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import TransitionGroup from "react-transition-group/TransitionGroup";
+import CSSAnimationGroupChild from "./CSSAnimationGroupChild";
 
 const CSSAnimationGroup = ({
   enterAnimation,
@@ -20,33 +21,35 @@ const CSSAnimationGroup = ({
   runOnMount,
   ...restProps
 }) =>
-  <TransitionGroup
-    {...restProps}
-    childFactory={child =>
-      <CSSAnimationGroupChild
-        enterAnimation={{
-          delay: enterDelay,
-          direction: enterDirection,
-          duration: enterDuration,
-          fillMode: enterFillMode,
-          iterationCount: enterIterationCount,
-          name: enterAnimation,
-          timingFunction: enterTimingFunction
-        }}
-        leaveAnimation={{
-          delay: leaveDelay,
-          direction: leaveDirection,
-          duration: leaveDuration,
-          fillMode: leaveFillMode,
-          iterationCount: leaveIterationCount,
-          name: leaveAnimation,
-          timingFunction: leaveTimingFunction
-        }}
-        runOnMount={runOnMount}
-      >
-        {child}
-      </CSSAnimationGroupChild>}
-  />;
+  React.createElement(TransitionGroup, {
+    ...restProps,
+    childFactory: child =>
+      React.createElement(
+        CSSAnimationGroupChild,
+        {
+          enterAnimation: {
+            delay: enterDelay,
+            direction: enterDirection,
+            duration: enterDuration,
+            fillMode: enterFillMode,
+            iterationCount: enterIterationCount,
+            name: enterAnimation,
+            timingFunction: enterTimingFunction
+          },
+          leaveAnimation: {
+            delay: leaveDelay,
+            direction: leaveDirection,
+            duration: leaveDuration,
+            fillMode: leaveFillMode,
+            iterationCount: leaveIterationCount,
+            name: leaveAnimation,
+            timingFunction: leaveTimingFunction
+          },
+          runOnMount
+        },
+        child
+      )
+  });
 
 const directionType = PropTypes.oneOf([
   "normal",
