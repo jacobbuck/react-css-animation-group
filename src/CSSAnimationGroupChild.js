@@ -28,7 +28,7 @@ class CSSAnimationGroupChild extends React.Component {
       }
     };
 
-    const removeListener => {
+    const removeListener = () => {
       node.removeEventListener("animationend", animationEnd);
       delete this.removeListener;
     };
