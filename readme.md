@@ -1,6 +1,6 @@
 # react-css-animation-group
 
-Use CSS Animations when a React component enters or leaves the DOM.
+Use [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) when a React component enters or leaves the DOM.
 
 Based on the [`TransitionGroup`](https://github.com/reactjs/react-transition-group/blob/master/README.md#low-level-api-transitiongroup) API.
 
@@ -43,4 +43,4 @@ Any additional properties will be passed down to `TransitionGroup`.
 
 ## Browser support
 
-Works on [browsers with CSS Animation](https://caniuse.com/#feat=css-animation), otherwise will gracefully degrade.
+Works on [browsers with CSS Animation support](https://caniuse.com/#feat=css-animation), otherwise will gracefully degrade.
