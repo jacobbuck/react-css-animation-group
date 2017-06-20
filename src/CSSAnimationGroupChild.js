@@ -15,17 +15,27 @@ class CSSAnimationGroupChild extends React.Component {
       return;
     }
 
+    if (this.removeListener) {
+      this.removeListener();
+    }
+
     node.style.animation = `${animation.name} ${animation.duration} ${animation.timingFunction} ${animation.delay} ${animation.iterationCount} ${animation.direction} ${animation.fillMode} running`;
 
     const animationEnd = event => {
       if (event.animationName === animation.name) {
+        removeListener();
         callback();
-        node.removeEventListener("animationend", animationEnd);
       }
     };
 
-    // Call callback on animationend event, and only listen once.
+    const removeListener => {
+      node.removeEventListener("animationend", animationEnd);
+      delete this.removeListener;
+    };
+
     node.addEventListener("animationend", animationEnd);
+
+    this.removeListener = removeListener;
   }
 
   componentWillAppear(done) {
@@ -48,6 +58,12 @@ class CSSAnimationGroupChild extends React.Component {
     const { leaveAnimation } = this.props;
 
     this.animate(leaveAnimation, done);
+  }
+
+  componentWillUnmount() {
+    if (this.removeListener) {
+      this.removeListener();
+    }
   }
 
   render() {
