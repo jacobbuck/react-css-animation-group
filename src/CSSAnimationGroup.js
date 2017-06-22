@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React from "react";
 import TransitionGroup from "react-transition-group/TransitionGroup";
 import CSSAnimationGroupChild from "./CSSAnimationGroupChild";
+import normalizeTime from "./utils/normalizeTime";
+import { directionType, fillModeType, timeType } from "./utils/propTypes";
 
 const CSSAnimationGroup = ({
   enterAnimation,
@@ -28,18 +30,18 @@ const CSSAnimationGroup = ({
         CSSAnimationGroupChild,
         {
           enterAnimation: {
-            delay: enterDelay,
+            delay: normalizeTime(enterDelay),
             direction: enterDirection,
-            duration: enterDuration,
+            duration: normalizeTime(enterDuration),
             fillMode: enterFillMode,
             iterationCount: enterIterationCount,
             name: enterAnimation,
             timingFunction: enterTimingFunction
           },
           leaveAnimation: {
-            delay: leaveDelay,
+            delay: normalizeTime(leaveDelay),
             direction: leaveDirection,
-            duration: leaveDuration,
+            duration: normalizeTime(leaveDuration),
             fillMode: leaveFillMode,
             iterationCount: leaveIterationCount,
             name: leaveAnimation,
@@ -50,17 +52,6 @@ const CSSAnimationGroup = ({
         child
       )
   });
-
-const directionType = PropTypes.oneOf([
-  "normal",
-  "reverse",
-  "alternate",
-  "alternate-reverse"
-]);
-
-const fillModeType = PropTypes.oneOf(["none", "forwards", "backwards", "both"]);
-
-const timeType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 CSSAnimationGroup.propTypes = {
   enterAnimation: PropTypes.string,
