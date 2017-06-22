@@ -58,22 +58,22 @@ const directionType = PropTypes.oneOf([
   "alternate-reverse"
 ]);
 
-const durationType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
-
 const fillModeType = PropTypes.oneOf(["none", "forwards", "backwards", "both"]);
+
+const timeType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
 CSSAnimationGroup.propTypes = {
   enterAnimation: PropTypes.string,
-  enterDelay: durationType,
+  enterDelay: timeType,
   enterDirection: directionType,
-  enterDuration: durationType,
+  enterDuration: timeType,
   enterFillMode: fillModeType,
   enterIterationCount: PropTypes.number,
   enterTimingFunction: PropTypes.string,
   leaveAnimation: PropTypes.string,
-  leaveDelay: durationType,
+  leaveDelay: timeType,
   leaveDirection: directionType,
-  leaveDuration: durationType,
+  leaveDuration: timeType,
   leaveFillMode: fillModeType,
   leaveIterationCount: PropTypes.number,
   leaveTimingFunction: PropTypes.string,
