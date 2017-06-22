@@ -36,7 +36,7 @@ const CSSAnimationGroup = ({
             fillMode: enterFillMode,
             iterationCount: enterIterationCount,
             name: enterAnimation,
-            timingFunction: enterTimingFunction
+            timingFunction: enterTimingFunction,
           },
           leaveAnimation: {
             delay: normalizeTime(leaveDelay),
@@ -45,12 +45,12 @@ const CSSAnimationGroup = ({
             fillMode: leaveFillMode,
             iterationCount: leaveIterationCount,
             name: leaveAnimation,
-            timingFunction: leaveTimingFunction
+            timingFunction: leaveTimingFunction,
           },
-          runOnMount
+          runOnMount,
         },
         child
-      )
+      ),
   });
 
 CSSAnimationGroup.propTypes = {
@@ -68,23 +68,25 @@ CSSAnimationGroup.propTypes = {
   leaveFillMode: fillModeType,
   leaveIterationCount: PropTypes.number,
   leaveTimingFunction: PropTypes.string,
-  runOnMount: PropTypes.bool
+  runOnMount: PropTypes.bool,
 };
 
 CSSAnimationGroup.defaultProps = {
+  enterAnimation: "",
   enterDelay: 0,
   enterDirection: "normal",
   enterDuration: 0,
   enterFillMode: "none",
   enterIterationCount: 1,
   enterTimingFunction: "ease",
+  leaveAnimation: "",
   leaveDelay: 0,
   leaveDirection: "normal",
   leaveDuration: 0,
   leaveFillMode: "none",
   leaveIterationCount: 1,
   leaveTimingFunction: "ease",
-  runOnMount: false
+  runOnMount: false,
 };
 
 export default CSSAnimationGroup;
