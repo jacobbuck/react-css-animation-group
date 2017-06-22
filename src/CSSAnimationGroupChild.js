@@ -9,7 +9,7 @@ class CSSAnimationGroupChild extends React.Component {
      * Bail and immediatly invoke callback if there is no animation defined,
      * there is no node to animate, or browser doesn't support CSS Animation.
      */
-    if (!animation.name || !node || !node.style.hasOwnProperty("animation")) {
+    if (!animation.name || !node || !("animation" in node.style)) {
       callback();
       return;
     }
