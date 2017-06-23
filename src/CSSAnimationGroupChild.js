@@ -30,7 +30,7 @@ class CSSAnimationGroupChild extends React.Component {
 
     node.style.animation = `${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode} running ${name}`;
 
-    const animationEnd = event => {
+    const handleAnimationEnd = event => {
       if (event.animationName === name) {
         removeListener();
         callback();
@@ -38,11 +38,11 @@ class CSSAnimationGroupChild extends React.Component {
     };
 
     const removeListener = () => {
-      node.removeEventListener("animationend", animationEnd);
+      node.removeEventListener("animationend", handleAnimationEnd);
       delete this.removeListener;
     };
 
-    node.addEventListener("animationend", animationEnd);
+    node.addEventListener("animationend", handleAnimationEnd);
 
     this.removeListener = removeListener;
   }
