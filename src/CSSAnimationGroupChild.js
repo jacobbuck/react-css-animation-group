@@ -3,13 +3,23 @@ import { findDOMNode } from "react-dom";
 
 class CSSAnimationGroupChild extends React.Component {
   animate(animation, callback) {
+    const {
+      delay,
+      direction,
+      duration,
+      fillMode,
+      iterationCount,
+      name,
+      timingFunction,
+    } = animation;
+
     const node = findDOMNode(this);
 
     /**
      * Bail and immediatly invoke callback if there is no animation defined,
      * there is no node to animate, or browser doesn't support CSS Animation.
      */
-    if (!animation.name || !node || !("animation" in node.style)) {
+    if (!name || !node || !("animation" in node.style)) {
       callback();
       return;
     }
@@ -18,10 +28,10 @@ class CSSAnimationGroupChild extends React.Component {
       this.removeListener();
     }
 
-    node.style.animation = `${animation.duration} ${animation.timingFunction} ${animation.delay} ${animation.iterationCount} ${animation.direction} ${animation.fillMode} running ${animation.name}`;
+    node.style.animation = `${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode} running ${name}`;
 
     const animationEnd = event => {
-      if (event.animationName === animation.name) {
+      if (event.animationName === name) {
         removeListener();
         callback();
       }
