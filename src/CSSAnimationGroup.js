@@ -23,35 +23,33 @@ const CSSAnimationGroup = ({
   runOnMount,
   ...restProps
 }) =>
-  React.createElement(TransitionGroup, {
-    ...restProps,
-    childFactory: child =>
-      React.createElement(
-        CSSAnimationGroupChild,
-        {
-          enterAnimation: {
-            delay: normalizeTime(enterDelay),
-            direction: enterDirection,
-            duration: normalizeTime(enterDuration),
-            fillMode: enterFillMode,
-            iterationCount: enterIterationCount,
-            name: enterAnimation,
-            timingFunction: enterTimingFunction,
-          },
-          leaveAnimation: {
-            delay: normalizeTime(leaveDelay),
-            direction: leaveDirection,
-            duration: normalizeTime(leaveDuration),
-            fillMode: leaveFillMode,
-            iterationCount: leaveIterationCount,
-            name: leaveAnimation,
-            timingFunction: leaveTimingFunction,
-          },
-          runOnMount,
-        },
-        child
-      ),
-  });
+  <TransitionGroup
+    {...restProps}
+    childFactory={child =>
+      <CSSAnimationGroupChild
+        enterAnimation={{
+          delay: normalizeTime(enterDelay),
+          direction: enterDirection,
+          duration: normalizeTime(enterDuration),
+          fillMode: enterFillMode,
+          iterationCount: enterIterationCount,
+          name: enterAnimation,
+          timingFunction: enterTimingFunction,
+        }}
+        leaveAnimation={{
+          delay: normalizeTime(leaveDelay),
+          direction: leaveDirection,
+          duration: normalizeTime(leaveDuration),
+          fillMode: leaveFillMode,
+          iterationCount: leaveIterationCount,
+          name: leaveAnimation,
+          timingFunction: leaveTimingFunction,
+        }}
+        runOnMount={runOnMount}
+      >
+        {child}
+      </CSSAnimationGroupChild>}
+  />;
 
 CSSAnimationGroup.propTypes = {
   enterAnimation: PropTypes.string,
