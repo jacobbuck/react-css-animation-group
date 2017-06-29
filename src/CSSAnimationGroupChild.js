@@ -19,7 +19,7 @@ class CSSAnimationGroupChild extends React.Component {
      * Bail and immediatly invoke callback if there is no animation defined,
      * there is no node to animate, or browser doesn't support CSS Animation.
      */
-    if (!name || !node || !("animation" in node.style)) {
+    if (!name || !node || !("animationName" in node.style)) {
       callback();
       return;
     }
@@ -27,8 +27,15 @@ class CSSAnimationGroupChild extends React.Component {
     if (this.removeListener) {
       this.removeListener();
     }
-
-    node.style.animation = `${duration} ${timingFunction} ${delay} ${iterationCount} ${direction} ${fillMode} running ${name}`;
+    
+    node.style.animationName = name;
+    node.style.animationDuration = duration;
+    node.style.animationTimingFunction = timingFunction;
+    node.style.animationDelay = delay;
+    node.style.animationDirection = direction;
+    node.style.animationIterationCount = iterationCount;
+    node.style.animationFillMode = fillMode;
+    node.style.animationPlayState = "running";
 
     const handleAnimationEnd = event => {
       if (event.animationName === name) {
