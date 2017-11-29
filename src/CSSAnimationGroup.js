@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import CSSAnimationGroupChild from './CSSAnimationGroupChild';
+import CSSAnimation from './CSSAnimation';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 

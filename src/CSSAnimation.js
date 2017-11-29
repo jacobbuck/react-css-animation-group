@@ -1,7 +1,7 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
 
-class CSSAnimationGroupChild extends React.Component {
+class CSSAnimation extends React.Component {
   animate(animation, callback) {
     const {
       delay,
@@ -95,4 +95,4 @@ class CSSAnimationGroupChild extends React.Component {
   }
 }
 
-export default CSSAnimationGroupChild;
+export default CSSAnimation;
