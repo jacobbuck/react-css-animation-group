@@ -1,9 +1,9 @@
-import PropTypes from "prop-types";
-import React from "react";
-import TransitionGroup from "react-transition-group/TransitionGroup";
-import CSSAnimationGroupChild from "./CSSAnimationGroupChild";
-import normalizeTime from "./utils/normalizeTime";
-import { directionType, fillModeType, timeType } from "./utils/propTypes";
+import PropTypes from 'prop-types';
+import React from 'react';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSAnimationGroupChild from './CSSAnimationGroupChild';
+import normalizeTime from './utils/normalizeTime';
+import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 const CSSAnimationGroup = ({
   enterAnimation,
@@ -22,10 +22,10 @@ const CSSAnimationGroup = ({
   leaveTimingFunction,
   runOnMount,
   ...restProps
-}) =>
+}) => (
   <TransitionGroup
     {...restProps}
-    childFactory={child =>
+    childFactory={child => (
       <CSSAnimationGroupChild
         enterAnimation={{
           delay: normalizeTime(enterDelay),
@@ -48,8 +48,10 @@ const CSSAnimationGroup = ({
         runOnMount={runOnMount}
       >
         {child}
-      </CSSAnimationGroupChild>}
-  />;
+      </CSSAnimationGroupChild>
+    )}
+  />
+);
 
 CSSAnimationGroup.propTypes = {
   enterAnimation: PropTypes.string,
@@ -70,20 +72,20 @@ CSSAnimationGroup.propTypes = {
 };
 
 CSSAnimationGroup.defaultProps = {
-  enterAnimation: "",
+  enterAnimation: '',
   enterDelay: 0,
-  enterDirection: "normal",
+  enterDirection: 'normal',
   enterDuration: 0,
-  enterFillMode: "none",
+  enterFillMode: 'none',
   enterIterationCount: 1,
-  enterTimingFunction: "ease",
-  leaveAnimation: "",
+  enterTimingFunction: 'ease',
+  leaveAnimation: '',
   leaveDelay: 0,
-  leaveDirection: "normal",
+  leaveDirection: 'normal',
   leaveDuration: 0,
-  leaveFillMode: "none",
+  leaveFillMode: 'none',
   leaveIterationCount: 1,
-  leaveTimingFunction: "ease",
+  leaveTimingFunction: 'ease',
   runOnMount: false,
 };
 

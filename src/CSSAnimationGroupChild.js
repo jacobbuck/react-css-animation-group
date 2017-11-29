@@ -1,5 +1,5 @@
-import React from "react";
-import { findDOMNode } from "react-dom";
+import React from 'react';
+import { findDOMNode } from 'react-dom';
 
 class CSSAnimationGroupChild extends React.Component {
   animate(animation, callback) {
@@ -19,7 +19,7 @@ class CSSAnimationGroupChild extends React.Component {
      * Bail and immediatly invoke callback if there is no animation defined,
      * there is no node to animate, or browser doesn't support CSS Animation.
      */
-    if (!name || !node || !("animationName" in node.style)) {
+    if (!name || !node || !('animationName' in node.style)) {
       callback();
       return;
     }
@@ -27,7 +27,7 @@ class CSSAnimationGroupChild extends React.Component {
     if (this.removeListener) {
       this.removeListener();
     }
-    
+
     node.style.animationName = name;
     node.style.animationDuration = duration;
     node.style.animationTimingFunction = timingFunction;
@@ -35,7 +35,7 @@ class CSSAnimationGroupChild extends React.Component {
     node.style.animationDirection = direction;
     node.style.animationIterationCount = iterationCount;
     node.style.animationFillMode = fillMode;
-    node.style.animationPlayState = "running";
+    node.style.animationPlayState = 'running';
 
     const handleAnimationEnd = event => {
       if (event.animationName === name) {
@@ -45,11 +45,11 @@ class CSSAnimationGroupChild extends React.Component {
     };
 
     const removeListener = () => {
-      node.removeEventListener("animationend", handleAnimationEnd);
+      node.removeEventListener('animationend', handleAnimationEnd);
       delete this.removeListener;
     };
 
-    node.addEventListener("animationend", handleAnimationEnd);
+    node.addEventListener('animationend', handleAnimationEnd);
 
     this.removeListener = removeListener;
   }
