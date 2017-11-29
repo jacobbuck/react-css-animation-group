@@ -8,8 +8,9 @@
   ],
   "scripts": {
     "build": "babel --out-dir lib src",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build"
+    "precommit": "lint-staged",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -42,6 +43,9 @@
     "babel-cli": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1"
+    "babel-preset-react": "^6.24.1",
+    "husky": "^0.14.3",
+    "lint-staged": "^5.0.0",
+    "prettier": "^1.8.2"
   }
 }
