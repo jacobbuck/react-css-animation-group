@@ -37,7 +37,6 @@ Based on the [`TransitionGroup`](https://github.com/reactjs/react-transition-gro
 - `leaveFillMode` leave animation fill mode
 - `leaveIterationCount` leave animation iteration count
 - `leaveTimingFunction` leave animation timing function
-- `runOnMount` if true, runs the enter animation on mount
 
 Any additional properties will be passed down to `TransitionGroup`.
 

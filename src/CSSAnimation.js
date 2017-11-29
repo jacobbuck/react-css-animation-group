@@ -115,7 +115,6 @@ CSSAnimation.propTypes = {
   exitFillMode: fillModeType,
   exitIterationCount: PropTypes.number,
   exitTimingFunction: PropTypes.string,
-  runOnMount: PropTypes.bool,
 };
 
 CSSAnimation.defaultProps = {
@@ -133,7 +132,6 @@ CSSAnimation.defaultProps = {
   exitFillMode: 'none',
   exitIterationCount: 1,
   exitTimingFunction: 'ease',
-  runOnMount: false,
 };
 
 export default CSSAnimation;

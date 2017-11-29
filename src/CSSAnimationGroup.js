@@ -20,7 +20,6 @@ const CSSAnimationGroup = ({
   exitFillMode,
   exitIterationCount,
   exitTimingFunction,
-  runOnMount,
   ...restProps
 }) => (
   <TransitionGroup
@@ -41,7 +40,6 @@ const CSSAnimationGroup = ({
         exitFillMode={exitFillMode}
         exitIterationCount={exitIterationCount}
         exitTimingFunction={exitTimingFunction}
-        runOnMount={runOnMount}
       >
         {child}
       </CSSAnimation>
@@ -64,7 +62,6 @@ CSSAnimationGroup.propTypes = {
   exitFillMode: fillModeType,
   exitIterationCount: PropTypes.number,
   exitTimingFunction: PropTypes.string,
-  runOnMount: PropTypes.bool,
 };
 
 CSSAnimationGroup.defaultProps = {
@@ -82,7 +79,6 @@ CSSAnimationGroup.defaultProps = {
   exitFillMode: 'none',
   exitIterationCount: 1,
   exitTimingFunction: 'ease',
-  runOnMount: false,
 };
 
 export default CSSAnimationGroup;
