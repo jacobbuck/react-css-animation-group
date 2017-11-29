@@ -1,19 +1,12 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import normalizeTime from './utils/normalizeTime';
+import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 class CSSAnimation extends React.Component {
-  animate(animation, callback) {
-    const {
-      delay,
-      direction,
-      duration,
-      fillMode,
-      iterationCount,
-      name,
-      timingFunction,
-    } = animation;
-
+  animate(animationType, callback) {
     const node = findDOMNode(this);
+    const { props } = thisl;
 
     /**
      * Bail and immediatly invoke callback if there is no animation defined,
@@ -28,13 +21,17 @@ class CSSAnimation extends React.Component {
       this.removeListener();
     }
 
-    node.style.animationName = name;
-    node.style.animationDuration = duration;
-    node.style.animationTimingFunction = timingFunction;
-    node.style.animationDelay = delay;
-    node.style.animationDirection = direction;
-    node.style.animationIterationCount = iterationCount;
-    node.style.animationFillMode = fillMode;
+    node.style.animationName = props[`${animationType}Animation`];
+    node.style.animationDuration = normalizeTime(
+      props[`${animationType}Duration`]
+    );
+    node.style.animationTimingFunction =
+      props[`${animationType}TimingFunction`];
+    node.style.animationDelay = normalizeTime(props[`${animationType}Delay`]);
+    node.style.animationDirection = props[`${animationType}Direction`];
+    node.style.animationIterationCount =
+      props[`${animationType}IterationCount`];
+    node.style.animationFillMode = props[`${animationType}FillMode`];
     node.style.animationPlayState = 'running';
 
     const handleAnimationEnd = event => {
@@ -55,25 +52,21 @@ class CSSAnimation extends React.Component {
   }
 
   componentWillAppear(done) {
-    const { enterAnimation, runOnMount } = this.props;
+    const { runOnMount } = this.props;
 
     if (runOnMount) {
-      this.animate(enterAnimation, done);
+      this.animate('enter', done);
     } else {
       done();
     }
   }
 
   componentWillEnter(done) {
-    const { enterAnimation } = this.props;
-
-    this.animate(enterAnimation, done);
+    this.animate('enter', done);
   }
 
   componentWillLeave(done) {
-    const { leaveAnimation } = this.props;
-
-    this.animate(leaveAnimation, done);
+    this.animate('leave', done);
   }
 
   componentWillUnmount() {
@@ -86,7 +79,19 @@ class CSSAnimation extends React.Component {
     const {
       children,
       enterAnimation,
+      enterDelay,
+      enterDirection,
+      enterDuration,
+      enterFillMode,
+      enterIterationCount,
+      enterTimingFunction,
       leaveAnimation,
+      leaveDelay,
+      leaveDirection,
+      leaveDuration,
+      leaveFillMode,
+      leaveIterationCount,
+      leaveTimingFunction,
       runOnMount,
       ...restProps
     } = this.props;
@@ -94,5 +99,41 @@ class CSSAnimation extends React.Component {
     return React.cloneElement(React.Children.only(children), restProps);
   }
 }
+
+CSSAnimation.propTypes = {
+  enterAnimation: PropTypes.string,
+  enterDelay: timeType,
+  enterDirection: directionType,
+  enterDuration: timeType,
+  enterFillMode: fillModeType,
+  enterIterationCount: PropTypes.number,
+  enterTimingFunction: PropTypes.string,
+  leaveAnimation: PropTypes.string,
+  leaveDelay: timeType,
+  leaveDirection: directionType,
+  leaveDuration: timeType,
+  leaveFillMode: fillModeType,
+  leaveIterationCount: PropTypes.number,
+  leaveTimingFunction: PropTypes.string,
+  runOnMount: PropTypes.bool,
+};
+
+CSSAnimation.defaultProps = {
+  enterAnimation: '',
+  enterDelay: 0,
+  enterDirection: 'normal',
+  enterDuration: 0,
+  enterFillMode: 'none',
+  enterIterationCount: 1,
+  enterTimingFunction: 'ease',
+  leaveAnimation: '',
+  leaveDelay: 0,
+  leaveDirection: 'normal',
+  leaveDuration: 0,
+  leaveFillMode: 'none',
+  leaveIterationCount: 1,
+  leaveTimingFunction: 'ease',
+  runOnMount: false,
+};
 
 export default CSSAnimation;

@@ -26,29 +26,25 @@ const CSSAnimationGroup = ({
   <TransitionGroup
     {...restProps}
     childFactory={child => (
-      <CSSAnimationGroupChild
-        enterAnimation={{
-          delay: normalizeTime(enterDelay),
-          direction: enterDirection,
-          duration: normalizeTime(enterDuration),
-          fillMode: enterFillMode,
-          iterationCount: enterIterationCount,
-          name: enterAnimation,
-          timingFunction: enterTimingFunction,
-        }}
-        leaveAnimation={{
-          delay: normalizeTime(leaveDelay),
-          direction: leaveDirection,
-          duration: normalizeTime(leaveDuration),
-          fillMode: leaveFillMode,
-          iterationCount: leaveIterationCount,
-          name: leaveAnimation,
-          timingFunction: leaveTimingFunction,
-        }}
+      <CSSAnimation
+        enterAnimation={enterAnimation}
+        enterDelay={enterDelay}
+        enterDirection={enterDirection}
+        enterDuration={enterDuration}
+        enterFillMode={enterFillMode}
+        enterIterationCount={enterIterationCount}
+        enterTimingFunction={enterTimingFunction}
+        leaveAnimation={leaveAnimation}
+        leaveDelay={leaveDelay}
+        leaveDirection={leaveDirection}
+        leaveDuration={leaveDuration}
+        leaveFillMode={leaveFillMode}
+        leaveIterationCount={leaveIterationCount}
+        leaveTimingFunction={leaveTimingFunction}
         runOnMount={runOnMount}
       >
         {child}
-      </CSSAnimationGroupChild>
+      </CSSAnimation>
     )}
   />
 );
