@@ -13,13 +13,13 @@ const CSSAnimationGroup = ({
   enterFillMode,
   enterIterationCount,
   enterTimingFunction,
-  leaveAnimation,
-  leaveDelay,
-  leaveDirection,
-  leaveDuration,
-  leaveFillMode,
-  leaveIterationCount,
-  leaveTimingFunction,
+  exitAnimation,
+  exitDelay,
+  exitDirection,
+  exitDuration,
+  exitFillMode,
+  exitIterationCount,
+  exitTimingFunction,
   runOnMount,
   ...restProps
 }) => (
@@ -34,13 +34,13 @@ const CSSAnimationGroup = ({
         enterFillMode={enterFillMode}
         enterIterationCount={enterIterationCount}
         enterTimingFunction={enterTimingFunction}
-        leaveAnimation={leaveAnimation}
-        leaveDelay={leaveDelay}
-        leaveDirection={leaveDirection}
-        leaveDuration={leaveDuration}
-        leaveFillMode={leaveFillMode}
-        leaveIterationCount={leaveIterationCount}
-        leaveTimingFunction={leaveTimingFunction}
+        exitAnimation={exitAnimation}
+        exitDelay={exitDelay}
+        exitDirection={exitDirection}
+        exitDuration={exitDuration}
+        exitFillMode={exitFillMode}
+        exitIterationCount={exitIterationCount}
+        exitTimingFunction={exitTimingFunction}
         runOnMount={runOnMount}
       >
         {child}
@@ -57,13 +57,13 @@ CSSAnimationGroup.propTypes = {
   enterFillMode: fillModeType,
   enterIterationCount: PropTypes.number,
   enterTimingFunction: PropTypes.string,
-  leaveAnimation: PropTypes.string,
-  leaveDelay: timeType,
-  leaveDirection: directionType,
-  leaveDuration: timeType,
-  leaveFillMode: fillModeType,
-  leaveIterationCount: PropTypes.number,
-  leaveTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
   runOnMount: PropTypes.bool,
 };
 
@@ -75,13 +75,13 @@ CSSAnimationGroup.defaultProps = {
   enterFillMode: 'none',
   enterIterationCount: 1,
   enterTimingFunction: 'ease',
-  leaveAnimation: '',
-  leaveDelay: 0,
-  leaveDirection: 'normal',
-  leaveDuration: 0,
-  leaveFillMode: 'none',
-  leaveIterationCount: 1,
-  leaveTimingFunction: 'ease',
+  exitAnimation: '',
+  exitDelay: 0,
+  exitDirection: 'normal',
+  exitDuration: 0,
+  exitFillMode: 'none',
+  exitIterationCount: 1,
+  exitTimingFunction: 'ease',
   runOnMount: false,
 };
 

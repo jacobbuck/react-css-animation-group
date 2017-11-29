@@ -66,7 +66,7 @@ class CSSAnimation extends React.Component {
   }
 
   componentWillLeave(done) {
-    this.animate('leave', done);
+    this.animate('exit', done);
   }
 
   componentWillUnmount() {
@@ -85,13 +85,13 @@ class CSSAnimation extends React.Component {
       enterFillMode,
       enterIterationCount,
       enterTimingFunction,
-      leaveAnimation,
-      leaveDelay,
-      leaveDirection,
-      leaveDuration,
-      leaveFillMode,
-      leaveIterationCount,
-      leaveTimingFunction,
+      exitAnimation,
+      exitDelay,
+      exitDirection,
+      exitDuration,
+      exitFillMode,
+      exitIterationCount,
+      exitTimingFunction,
       runOnMount,
       ...restProps
     } = this.props;
@@ -108,13 +108,13 @@ CSSAnimation.propTypes = {
   enterFillMode: fillModeType,
   enterIterationCount: PropTypes.number,
   enterTimingFunction: PropTypes.string,
-  leaveAnimation: PropTypes.string,
-  leaveDelay: timeType,
-  leaveDirection: directionType,
-  leaveDuration: timeType,
-  leaveFillMode: fillModeType,
-  leaveIterationCount: PropTypes.number,
-  leaveTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
   runOnMount: PropTypes.bool,
 };
 
@@ -126,13 +126,13 @@ CSSAnimation.defaultProps = {
   enterFillMode: 'none',
   enterIterationCount: 1,
   enterTimingFunction: 'ease',
-  leaveAnimation: '',
-  leaveDelay: 0,
-  leaveDirection: 'normal',
-  leaveDuration: 0,
-  leaveFillMode: 'none',
-  leaveIterationCount: 1,
-  leaveTimingFunction: 'ease',
+  exitAnimation: '',
+  exitDelay: 0,
+  exitDirection: 'normal',
+  exitDuration: 0,
+  exitFillMode: 'none',
+  exitIterationCount: 1,
+  exitTimingFunction: 'ease',
   runOnMount: false,
 };
 
