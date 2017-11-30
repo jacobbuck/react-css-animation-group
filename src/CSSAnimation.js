@@ -1,83 +1,115 @@
 import React from 'react';
 import { findDOMNode } from 'react-dom';
+import Transition from 'react-transition-group/Transition';
+import PropTypes from 'prop-types';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 class CSSAnimation extends React.Component {
-  animate(animationType, callback) {
-    const node = findDOMNode(this);
-    const { props } = thisl;
+  addEndListener = (node, done) => {
+    if ('animationName' in node.style) {
+      node.addEventListener('animationend', done, false);
+    }
+  };
 
-    /**
-     * Bail and immediatly invoke callback if there is no animation defined,
-     * there is no node to animate, or browser doesn't support CSS Animation.
-     */
-    if (!name || !node || !('animationName' in node.style)) {
-      callback();
-      return;
+  onEnter = node => {
+    const {
+      enterAnimation,
+      enterDelay,
+      enterDirection,
+      enterDuration,
+      enterFillMode,
+      enterIterationCount,
+      enterTimingFunction,
+      onEnter,
+    } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animationName = enterAnimation;
+      node.style.animationDuration = normalizeTime(enterDuration);
+      node.style.animationTimingFunction = enterTimingFunction;
+      node.style.animationDelay = normalizeTime(enterDelay);
+      node.style.animationDirection = enterDirection;
+      node.style.animationIterationCount = enterIterationCount;
+      node.style.animationFillMode = enterFillMode;
+      node.style.animationPlayState = 'paused';
     }
 
-    if (this.removeListener) {
-      this.removeListener();
+    if (onEnter) {
+      onEnter(node);
+    }
+  };
+
+  onEntering = node => {
+    const { onEntering } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animationPlayState = 'running';
     }
 
-    node.style.animationName = props[`${animationType}Animation`];
-    node.style.animationDuration = normalizeTime(
-      props[`${animationType}Duration`]
-    );
-    node.style.animationTimingFunction =
-      props[`${animationType}TimingFunction`];
-    node.style.animationDelay = normalizeTime(props[`${animationType}Delay`]);
-    node.style.animationDirection = props[`${animationType}Direction`];
-    node.style.animationIterationCount =
-      props[`${animationType}IterationCount`];
-    node.style.animationFillMode = props[`${animationType}FillMode`];
-    node.style.animationPlayState = 'running';
-
-    const handleAnimationEnd = event => {
-      if (event.animationName === name) {
-        removeListener();
-        callback();
-      }
-    };
-
-    const removeListener = () => {
-      node.removeEventListener('animationend', handleAnimationEnd);
-      delete this.removeListener;
-    };
-
-    node.addEventListener('animationend', handleAnimationEnd);
-
-    this.removeListener = removeListener;
-  }
-
-  componentWillAppear(done) {
-    const { runOnMount } = this.props;
-
-    if (runOnMount) {
-      this.animate('enter', done);
-    } else {
-      done();
+    if (onEntering) {
+      onEntering(node);
     }
-  }
+  };
 
-  componentWillEnter(done) {
-    this.animate('enter', done);
-  }
+  onEntered = node => {
+    const { onEntered } = this.props;
 
-  componentWillLeave(done) {
-    this.animate('exit', done);
-  }
-
-  componentWillUnmount() {
-    if (this.removeListener) {
-      this.removeListener();
+    if (onEntered) {
+      onEntered(node);
     }
-  }
+  };
+
+  onExit = node => {
+    const {
+      exitAnimation,
+      exitDelay,
+      exitDirection,
+      exitDuration,
+      exitFillMode,
+      exitIterationCount,
+      exitTimingFunction,
+      onExit,
+    } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animationName = exitAnimation;
+      node.style.animationDuration = normalizeTime(exitDuration);
+      node.style.animationTimingFunction = exitTimingFunction;
+      node.style.animationDelay = normalizeTime(exitDelay);
+      node.style.animationDirection = exitDirection;
+      node.style.animationIterationCount = exitIterationCount;
+      node.style.animationFillMode = exitFillMode;
+      node.style.animationPlayState = 'paused';
+    }
+
+    if (onExit) {
+      onExit(node);
+    }
+  };
+
+  onExiting = node => {
+    const { onExiting } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animationPlayState = 'running';
+    }
+
+    if (onExiting) {
+      onExiting(node);
+    }
+  };
+
+  onExited = node => {
+    const { onExited } = this.props;
+
+    if (onExited) {
+      onExited(node);
+    }
+  };
 
   render() {
     const {
-      children,
       enterAnimation,
       enterDelay,
       enterDirection,
@@ -92,11 +124,27 @@ class CSSAnimation extends React.Component {
       exitFillMode,
       exitIterationCount,
       exitTimingFunction,
-      runOnMount,
+      onEnter,
+      onEntering,
+      onEntered,
+      onExit,
+      onExiting,
+      onExited,
       ...restProps
     } = this.props;
 
-    return React.cloneElement(React.Children.only(children), restProps);
+    return (
+      <Transition
+        {...restProps}
+        addEndListener={this.addEndListener}
+        onEnter={this.onEnter}
+        onEntering={this.onEntering}
+        onEntered={this.onEntered}
+        onExit={this.onExit}
+        onExiting={this.onExiting}
+        onExited={this.onExited}
+      />
+    );
   }
 }
 
