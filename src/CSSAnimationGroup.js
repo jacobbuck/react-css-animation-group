@@ -6,6 +6,7 @@ import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 const CSSAnimationGroup = ({
+  children,
   enterAnimation,
   enterDelay,
   enterDirection,
@@ -22,29 +23,33 @@ const CSSAnimationGroup = ({
   exitTimingFunction,
   ...restProps
 }) => (
-  <TransitionGroup
-    {...restProps}
-    childFactory={child => (
-      <CSSAnimation
-        enterAnimation={enterAnimation}
-        enterDelay={enterDelay}
-        enterDirection={enterDirection}
-        enterDuration={enterDuration}
-        enterFillMode={enterFillMode}
-        enterIterationCount={enterIterationCount}
-        enterTimingFunction={enterTimingFunction}
-        exitAnimation={exitAnimation}
-        exitDelay={exitDelay}
-        exitDirection={exitDirection}
-        exitDuration={exitDuration}
-        exitFillMode={exitFillMode}
-        exitIterationCount={exitIterationCount}
-        exitTimingFunction={exitTimingFunction}
-      >
-        {child}
-      </CSSAnimation>
+  <TransitionGroup {...restProps}>
+    {React.Children.map(
+      children,
+      child =>
+        child && (
+          <CSSAnimation
+            enterAnimation={enterAnimation}
+            enterDelay={enterDelay}
+            enterDirection={enterDirection}
+            enterDuration={enterDuration}
+            enterFillMode={enterFillMode}
+            enterIterationCount={enterIterationCount}
+            enterTimingFunction={enterTimingFunction}
+            exitAnimation={exitAnimation}
+            exitDelay={exitDelay}
+            exitDirection={exitDirection}
+            exitDuration={exitDuration}
+            exitFillMode={exitFillMode}
+            exitIterationCount={exitIterationCount}
+            exitTimingFunction={exitTimingFunction}
+            key={child.key}
+          >
+            {child}
+          </CSSAnimation>
+        )
     )}
-  />
+  </TransitionGroup>
 );
 
 CSSAnimationGroup.propTypes = {
