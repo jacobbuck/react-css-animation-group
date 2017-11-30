@@ -1,5 +1,4 @@
 import React from 'react';
-import { findDOMNode } from 'react-dom';
 import Transition from 'react-transition-group/Transition';
 import PropTypes from 'prop-types';
 import normalizeTime from './utils/normalizeTime';
