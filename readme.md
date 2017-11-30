@@ -2,7 +2,7 @@
 
 Use [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) when a React component enters or leaves the DOM.
 
-Based on the [`TransitionGroup`](https://github.com/reactjs/react-transition-group/blob/master/README.md#low-level-api-transitiongroup) API.
+Based on  [`react-transition-group`](https://github.com/reactjs/react-transition-group).
 
 ## Usage
 
@@ -13,9 +13,9 @@ Based on the [`TransitionGroup`](https://github.com/reactjs/react-transition-gro
     enterAnimation="bounceIn"
     enterDuration="200ms"
     enterTimingFunction="ease"
-    leaveAnimation="fadeOut"
-    leaveDuration="150ms"
-    leaveTimingFunction="linear"
+    exitAnimation="fadeOut"
+    exitDuration="150ms"
+    exitTimingFunction="linear"
   >
     {children}
   </CSSAnimationGroup>
@@ -30,13 +30,13 @@ Based on the [`TransitionGroup`](https://github.com/reactjs/react-transition-gro
 - `enterFillMode` enter animation fill mode
 - `enterIterationCount` enter animation iteration count
 - `enterTimingFunction` enter animation timing function
-- `leaveAnimation` leave animation name
-- `leaveDelay` leave animation delay
-- `leaveDirection` leave animation direction
-- `leaveDuration` leave animation duration
-- `leaveFillMode` leave animation fill mode
-- `leaveIterationCount` leave animation iteration count
-- `leaveTimingFunction` leave animation timing function
+- `exitAnimation` leave animation name
+- `exitDelay` leave animation delay
+- `exitDirection` leave animation direction
+- `exitDuration` leave animation duration
+- `exitFillMode` leave animation fill mode
+- `exitIterationCount` leave animation iteration count
+- `exitTimingFunction` leave animation timing function
 
 Any additional properties will be passed down to `TransitionGroup`.
 
