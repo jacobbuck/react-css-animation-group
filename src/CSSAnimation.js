@@ -12,6 +12,18 @@ class CSSAnimation extends React.Component {
   };
 
   onEnter = node => {
+    const { onEnter } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animation = '0s none';
+    }
+
+    if (onEnter) {
+      onEnter(node);
+    }
+  };
+
+  onEntering = node => {
     const {
       enterAnimation,
       enterDelay,
@@ -20,7 +32,7 @@ class CSSAnimation extends React.Component {
       enterFillMode,
       enterIterationCount,
       enterTimingFunction,
-      onEnter,
+      onEntering,
     } = this.props;
 
     if ('animationName' in node.style) {
@@ -31,18 +43,6 @@ class CSSAnimation extends React.Component {
       node.style.animationDirection = enterDirection;
       node.style.animationIterationCount = enterIterationCount;
       node.style.animationFillMode = enterFillMode;
-      node.style.animationPlayState = 'paused';
-    }
-
-    if (onEnter) {
-      onEnter(node);
-    }
-  };
-
-  onEntering = node => {
-    const { onEntering } = this.props;
-
-    if ('animationName' in node.style) {
       node.style.animationPlayState = 'running';
     }
 
@@ -54,12 +54,28 @@ class CSSAnimation extends React.Component {
   onEntered = node => {
     const { onEntered } = this.props;
 
+    if ('animationName' in node.style) {
+      node.style.animationPlayState = 'paused';
+    }
+
     if (onEntered) {
       onEntered(node);
     }
   };
 
   onExit = node => {
+    const { onExit } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animation = '0s none';
+    }
+
+    if (onExit) {
+      onExit(node);
+    }
+  };
+
+  onExiting = node => {
     const {
       exitAnimation,
       exitDelay,
@@ -68,7 +84,7 @@ class CSSAnimation extends React.Component {
       exitFillMode,
       exitIterationCount,
       exitTimingFunction,
-      onExit,
+      onExiting,
     } = this.props;
 
     if ('animationName' in node.style) {
@@ -79,18 +95,6 @@ class CSSAnimation extends React.Component {
       node.style.animationDirection = exitDirection;
       node.style.animationIterationCount = exitIterationCount;
       node.style.animationFillMode = exitFillMode;
-      node.style.animationPlayState = 'paused';
-    }
-
-    if (onExit) {
-      onExit(node);
-    }
-  };
-
-  onExiting = node => {
-    const { onExiting } = this.props;
-
-    if ('animationName' in node.style) {
       node.style.animationPlayState = 'running';
     }
 
@@ -101,6 +105,10 @@ class CSSAnimation extends React.Component {
 
   onExited = node => {
     const { onExited } = this.props;
+
+    if ('animationName' in node.style) {
+      node.style.animationPlayState = 'paused';
+    }
 
     if (onExited) {
       onExited(node);
