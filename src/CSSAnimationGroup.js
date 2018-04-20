@@ -23,28 +23,30 @@ const CSSAnimationGroup = ({
   exitTimingFunction,
   ...restProps
 }) => (
-  <TransitionGroup {...restProps}>
+  <TransitionGroup 
+    {...restProps}
+    childFactory={child => React.cloneElement(child, {
+        enterAnimation,
+        enterDelay,
+        enterDirection,
+        enterDuration,
+        enterFillMode,
+        enterIterationCount,
+        enterTimingFunction,
+        exitAnimation,
+        exitDelay,
+        exitDirection,
+        exitDuration,
+        exitFillMode,
+        exitIterationCount,
+        exitTimingFunction,
+    })}
+  >
     {React.Children.map(
       children,
       child =>
         child && (
-          <CSSAnimation
-            enterAnimation={enterAnimation}
-            enterDelay={enterDelay}
-            enterDirection={enterDirection}
-            enterDuration={enterDuration}
-            enterFillMode={enterFillMode}
-            enterIterationCount={enterIterationCount}
-            enterTimingFunction={enterTimingFunction}
-            exitAnimation={exitAnimation}
-            exitDelay={exitDelay}
-            exitDirection={exitDirection}
-            exitDuration={exitDuration}
-            exitFillMode={exitFillMode}
-            exitIterationCount={exitIterationCount}
-            exitTimingFunction={exitTimingFunction}
-            key={child.key}
-          >
+          <CSSAnimation key={child.key}>
             {child}
           </CSSAnimation>
         )
