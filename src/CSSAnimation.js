@@ -1,10 +1,44 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import Transition from 'react-transition-group/Transition';
-import PropTypes from 'prop-types';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 class CSSAnimation extends React.Component {
+  static propTypes = {
+    enterAnimation: PropTypes.string,
+    enterDelay: timeType,
+    enterDirection: directionType,
+    enterDuration: timeType,
+    enterFillMode: fillModeType,
+    enterIterationCount: PropTypes.number,
+    enterTimingFunction: PropTypes.string,
+    exitAnimation: PropTypes.string,
+    exitDelay: timeType,
+    exitDirection: directionType,
+    exitDuration: timeType,
+    exitFillMode: fillModeType,
+    exitIterationCount: PropTypes.number,
+    exitTimingFunction: PropTypes.string,
+  };
+
+  static defaultProps = {
+    enterAnimation: '',
+    enterDelay: 0,
+    enterDirection: 'normal',
+    enterDuration: 0,
+    enterFillMode: 'none',
+    enterIterationCount: 1,
+    enterTimingFunction: 'ease',
+    exitAnimation: '',
+    exitDelay: 0,
+    exitDirection: 'normal',
+    exitDuration: 0,
+    exitFillMode: 'none',
+    exitIterationCount: 1,
+    exitTimingFunction: 'ease',
+  };
+
   addEndListener = (node, done) => {
     if ('animationName' in node.style) {
       node.addEventListener('animationend', done, false);
@@ -154,39 +188,5 @@ class CSSAnimation extends React.Component {
     );
   }
 }
-
-CSSAnimation.propTypes = {
-  enterAnimation: PropTypes.string,
-  enterDelay: timeType,
-  enterDirection: directionType,
-  enterDuration: timeType,
-  enterFillMode: fillModeType,
-  enterIterationCount: PropTypes.number,
-  enterTimingFunction: PropTypes.string,
-  exitAnimation: PropTypes.string,
-  exitDelay: timeType,
-  exitDirection: directionType,
-  exitDuration: timeType,
-  exitFillMode: fillModeType,
-  exitIterationCount: PropTypes.number,
-  exitTimingFunction: PropTypes.string,
-};
-
-CSSAnimation.defaultProps = {
-  enterAnimation: '',
-  enterDelay: 0,
-  enterDirection: 'normal',
-  enterDuration: 0,
-  enterFillMode: 'none',
-  enterIterationCount: 1,
-  enterTimingFunction: 'ease',
-  exitAnimation: '',
-  exitDelay: 0,
-  exitDirection: 'normal',
-  exitDuration: 0,
-  exitFillMode: 'none',
-  exitIterationCount: 1,
-  exitTimingFunction: 'ease',
-};
 
 export default CSSAnimation;
