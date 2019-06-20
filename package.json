@@ -31,22 +31,22 @@
   },
   "homepage": "https://github.com/jacobbuck/react-css-animation-group#readme",
   "dependencies": {
-    "prop-types": "^15.6.2",
-    "react-transition-group": "^2.5.0"
+    "prop-types": "^15.7.2",
+    "react-transition-group": "^4.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
-    "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
-    "prettier": "^1.14.3"
+    "husky": "^2.4.1",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2"
   },
   "peerDependencies": {
-    "react": ">=15.0.0",
-    "react-dom": ">=15.0.0"
+    "react": "^16.6.0",
+    "react-dom": "^16.6.0"
   },
   "husky": {
     "hooks": {
