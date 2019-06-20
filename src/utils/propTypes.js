@@ -1,20 +1,29 @@
 import PropTypes from 'prop-types';
 
-export const directionType = PropTypes.oneOf([
+const directionType = PropTypes.oneOf([
   'normal',
   'reverse',
   'alternate',
   'alternate-reverse',
 ]);
 
-export const fillModeType = PropTypes.oneOf([
-  'none',
-  'forwards',
-  'backwards',
-  'both',
-]);
+const fillModeType = PropTypes.oneOf(['none', 'forwards', 'backwards', 'both']);
 
-export const timeType = PropTypes.oneOfType([
-  PropTypes.number,
-  PropTypes.string,
-]);
+const timeType = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
+
+export default {
+  enterAnimation: PropTypes.string,
+  enterDelay: timeType,
+  enterDirection: directionType,
+  enterDuration: timeType,
+  enterFillMode: fillModeType,
+  enterIterationCount: PropTypes.number,
+  enterTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
+};

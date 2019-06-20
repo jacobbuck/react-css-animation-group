@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import normalizeTime from './utils/normalizeTime';
-import { directionType, fillModeType, timeType } from './utils/propTypes';
+import defaultProps from './utils/defaultProps';
+import propTypes from './utils/propTypes';
 
 const addEndListener = (node, done) => {
   if ('animationName' in node.style) {
@@ -123,38 +123,7 @@ const CSSAnimation = props => {
   );
 };
 
-CSSAnimation.defaultProps = {
-  enterAnimation: '',
-  enterDelay: 0,
-  enterDirection: 'normal',
-  enterDuration: 0,
-  enterFillMode: 'none',
-  enterIterationCount: 1,
-  enterTimingFunction: 'ease',
-  exitAnimation: '',
-  exitDelay: 0,
-  exitDirection: 'normal',
-  exitDuration: 0,
-  exitFillMode: 'none',
-  exitIterationCount: 1,
-  exitTimingFunction: 'ease',
-};
-
-CSSAnimation.propTypes = {
-  enterAnimation: PropTypes.string,
-  enterDelay: timeType,
-  enterDirection: directionType,
-  enterDuration: timeType,
-  enterFillMode: fillModeType,
-  enterIterationCount: PropTypes.number,
-  enterTimingFunction: PropTypes.string,
-  exitAnimation: PropTypes.string,
-  exitDelay: timeType,
-  exitDirection: directionType,
-  exitDuration: timeType,
-  exitFillMode: fillModeType,
-  exitIterationCount: PropTypes.number,
-  exitTimingFunction: PropTypes.string,
-};
+CSSAnimation.defaultProps = defaultProps;
+CSSAnimation.propTypes = propTypes;
 
 export default CSSAnimation;
