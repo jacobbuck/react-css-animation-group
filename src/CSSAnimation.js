@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Transition } from 'react-transition-group';
 import normalizeTime from './utils/normalizeTime';
@@ -124,6 +125,14 @@ const CSSAnimation = props => {
 };
 
 CSSAnimation.defaultProps = defaultProps;
-CSSAnimation.propTypes = propTypes;
+CSSAnimation.propTypes = {
+  ...propTypes,
+  onEnter: PropTypes.func,
+  onEntering: PropTypes.func,
+  onEntered: PropTypes.func,
+  onExit: PropTypes.func,
+  onExiting: PropTypes.func,
+  onExited: PropTypes.func,
+};
 
 export default CSSAnimation;
