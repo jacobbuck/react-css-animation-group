@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import Transition from 'react-transition-group/Transition';
+import { Transition } from 'react-transition-group';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 

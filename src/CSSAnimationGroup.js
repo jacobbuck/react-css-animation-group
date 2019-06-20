@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import TransitionGroup from 'react-transition-group/TransitionGroup';
+import { TransitionGroup } from 'react-transition-group';
 import CSSAnimation from './CSSAnimation';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
