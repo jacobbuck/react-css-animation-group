@@ -4,6 +4,12 @@ import Transition from 'react-transition-group/Transition';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
+const addEndListener = (node, done) => {
+  if ('animationName' in node.style) {
+    node.addEventListener('animationend', done, false);
+  }
+};
+
 const CSSAnimation = props => {
   const {
     enterAnimation,
@@ -28,12 +34,6 @@ const CSSAnimation = props => {
     onExited,
     ...restProps
   } = props;
-
-  const addEndListener = (node, done) => {
-    if ('animationName' in node.style) {
-      node.addEventListener('animationend', done, false);
-    }
-  };
 
   const onEnter = node => {
     if ('animationName' in node.style) {
