@@ -35,7 +35,7 @@ const CSSAnimation = props => {
     ...restProps
   } = props;
 
-  const onEnter = node => {
+  const handleEnter = node => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -45,7 +45,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const onEntering = node => {
+  const handleEntering = node => {
     if ('animationName' in node.style) {
       node.style.animationName = enterAnimation;
       node.style.animationDuration = normalizeTime(enterDuration);
@@ -62,7 +62,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const onEntered = node => {
+  const handleEntered = node => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -72,7 +72,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const onExit = node => {
+  const handleExit = node => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -82,7 +82,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const onExiting = node => {
+  const handleExiting = node => {
     if ('animationName' in node.style) {
       node.style.animationName = exitAnimation;
       node.style.animationDuration = normalizeTime(exitDuration);
@@ -99,7 +99,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const onExited = node => {
+  const handleExited = node => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -113,12 +113,12 @@ const CSSAnimation = props => {
     <Transition
       {...restProps}
       addEndListener={addEndListener}
-      onEnter={onEnter}
-      onEntering={onEntering}
-      onEntered={onEntered}
-      onExit={onExit}
-      onExiting={onExiting}
-      onExited={onExited}
+      onEnter={handleEnter}
+      onEntering={handleEntering}
+      onEntered={handleEntered}
+      onExit={handleExit}
+      onExiting={handleExiting}
+      onExited={handleExited}
     />
   );
 };
