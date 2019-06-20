@@ -4,50 +4,38 @@ import Transition from 'react-transition-group/Transition';
 import normalizeTime from './utils/normalizeTime';
 import { directionType, fillModeType, timeType } from './utils/propTypes';
 
-class CSSAnimation extends React.Component {
-  static propTypes = {
-    enterAnimation: PropTypes.string,
-    enterDelay: timeType,
-    enterDirection: directionType,
-    enterDuration: timeType,
-    enterFillMode: fillModeType,
-    enterIterationCount: PropTypes.number,
-    enterTimingFunction: PropTypes.string,
-    exitAnimation: PropTypes.string,
-    exitDelay: timeType,
-    exitDirection: directionType,
-    exitDuration: timeType,
-    exitFillMode: fillModeType,
-    exitIterationCount: PropTypes.number,
-    exitTimingFunction: PropTypes.string,
-  };
+const CSSAnimation = props => {
+  const {
+    enterAnimation,
+    enterDelay,
+    enterDirection,
+    enterDuration,
+    enterFillMode,
+    enterIterationCount,
+    enterTimingFunction,
+    exitAnimation,
+    exitDelay,
+    exitDirection,
+    exitDuration,
+    exitFillMode,
+    exitIterationCount,
+    exitTimingFunction,
+    onEnter,
+    onEntering,
+    onEntered,
+    onExit,
+    onExiting,
+    onExited,
+    ...restProps
+  } = props;
 
-  static defaultProps = {
-    enterAnimation: '',
-    enterDelay: 0,
-    enterDirection: 'normal',
-    enterDuration: 0,
-    enterFillMode: 'none',
-    enterIterationCount: 1,
-    enterTimingFunction: 'ease',
-    exitAnimation: '',
-    exitDelay: 0,
-    exitDirection: 'normal',
-    exitDuration: 0,
-    exitFillMode: 'none',
-    exitIterationCount: 1,
-    exitTimingFunction: 'ease',
-  };
-
-  addEndListener = (node, done) => {
+  const addEndListener = (node, done) => {
     if ('animationName' in node.style) {
       node.addEventListener('animationend', done, false);
     }
   };
 
-  onEnter = node => {
-    const { onEnter } = this.props;
-
+  const onEnter = node => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -57,18 +45,7 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  onEntering = node => {
-    const {
-      enterAnimation,
-      enterDelay,
-      enterDirection,
-      enterDuration,
-      enterFillMode,
-      enterIterationCount,
-      enterTimingFunction,
-      onEntering,
-    } = this.props;
-
+  const onEntering = node => {
     if ('animationName' in node.style) {
       node.style.animationName = enterAnimation;
       node.style.animationDuration = normalizeTime(enterDuration);
@@ -85,9 +62,7 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  onEntered = node => {
-    const { onEntered } = this.props;
-
+  const onEntered = node => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -97,9 +72,7 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  onExit = node => {
-    const { onExit } = this.props;
-
+  const onExit = node => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -109,18 +82,7 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  onExiting = node => {
-    const {
-      exitAnimation,
-      exitDelay,
-      exitDirection,
-      exitDuration,
-      exitFillMode,
-      exitIterationCount,
-      exitTimingFunction,
-      onExiting,
-    } = this.props;
-
+  const onExiting = node => {
     if ('animationName' in node.style) {
       node.style.animationName = exitAnimation;
       node.style.animationDuration = normalizeTime(exitDuration);
@@ -137,9 +99,7 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  onExited = node => {
-    const { onExited } = this.props;
-
+  const onExited = node => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -149,44 +109,52 @@ class CSSAnimation extends React.Component {
     }
   };
 
-  render() {
-    const {
-      enterAnimation,
-      enterDelay,
-      enterDirection,
-      enterDuration,
-      enterFillMode,
-      enterIterationCount,
-      enterTimingFunction,
-      exitAnimation,
-      exitDelay,
-      exitDirection,
-      exitDuration,
-      exitFillMode,
-      exitIterationCount,
-      exitTimingFunction,
-      onEnter,
-      onEntering,
-      onEntered,
-      onExit,
-      onExiting,
-      onExited,
-      ...restProps
-    } = this.props;
+  return (
+    <Transition
+      {...restProps}
+      addEndListener={addEndListener}
+      onEnter={onEnter}
+      onEntering={onEntering}
+      onEntered={onEntered}
+      onExit={onExit}
+      onExiting={onExiting}
+      onExited={onExited}
+    />
+  );
+};
 
-    return (
-      <Transition
-        {...restProps}
-        addEndListener={this.addEndListener}
-        onEnter={this.onEnter}
-        onEntering={this.onEntering}
-        onEntered={this.onEntered}
-        onExit={this.onExit}
-        onExiting={this.onExiting}
-        onExited={this.onExited}
-      />
-    );
-  }
-}
+CSSAnimation.defaultProps = {
+  enterAnimation: '',
+  enterDelay: 0,
+  enterDirection: 'normal',
+  enterDuration: 0,
+  enterFillMode: 'none',
+  enterIterationCount: 1,
+  enterTimingFunction: 'ease',
+  exitAnimation: '',
+  exitDelay: 0,
+  exitDirection: 'normal',
+  exitDuration: 0,
+  exitFillMode: 'none',
+  exitIterationCount: 1,
+  exitTimingFunction: 'ease',
+};
+
+CSSAnimation.propTypes = {
+  enterAnimation: PropTypes.string,
+  enterDelay: timeType,
+  enterDirection: directionType,
+  enterDuration: timeType,
+  enterFillMode: fillModeType,
+  enterIterationCount: PropTypes.number,
+  enterTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
+};
 
 export default CSSAnimation;
