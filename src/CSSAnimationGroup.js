@@ -5,7 +5,7 @@ import CSSAnimation from './CSSAnimation';
 import defaultProps from './utils/defaultProps';
 import propTypes from './utils/propTypes';
 
-const CSSAnimationGroup = props => {
+const CSSAnimationGroup = (props) => {
   const {
     children,
     enterAnimation,
@@ -28,7 +28,7 @@ const CSSAnimationGroup = props => {
   return (
     <TransitionGroup
       {...restProps}
-      childFactory={child =>
+      childFactory={(child) =>
         React.cloneElement(child, {
           enterAnimation,
           enterDelay,
@@ -49,13 +49,14 @@ const CSSAnimationGroup = props => {
     >
       {React.Children.map(
         children,
-        child => child && <CSSAnimation key={child.key}>{child}</CSSAnimation>
+        (child) => child && <CSSAnimation key={child.key}>{child}</CSSAnimation>
       )}
     </TransitionGroup>
   );
 };
 
 CSSAnimationGroup.defaultProps = defaultProps;
+
 CSSAnimationGroup.propTypes = {
   ...propTypes,
   children: PropTypes.node,

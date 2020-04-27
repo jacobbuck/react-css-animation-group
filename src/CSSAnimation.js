@@ -11,7 +11,7 @@ const addEndListener = (node, done) => {
   }
 };
 
-const CSSAnimation = props => {
+const CSSAnimation = (props) => {
   const {
     enterAnimation,
     enterDelay,
@@ -36,7 +36,7 @@ const CSSAnimation = props => {
     ...restProps
   } = props;
 
-  const handleEnter = node => {
+  const handleEnter = (node) => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -46,7 +46,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const handleEntering = node => {
+  const handleEntering = (node) => {
     if ('animationName' in node.style) {
       node.style.animationName = enterAnimation;
       node.style.animationDuration = normalizeTime(enterDuration);
@@ -63,7 +63,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const handleEntered = node => {
+  const handleEntered = (node) => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -73,7 +73,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const handleExit = node => {
+  const handleExit = (node) => {
     if ('animationName' in node.style) {
       node.style.animation = '0s none';
     }
@@ -83,7 +83,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const handleExiting = node => {
+  const handleExiting = (node) => {
     if ('animationName' in node.style) {
       node.style.animationName = exitAnimation;
       node.style.animationDuration = normalizeTime(exitDuration);
@@ -100,7 +100,7 @@ const CSSAnimation = props => {
     }
   };
 
-  const handleExited = node => {
+  const handleExited = (node) => {
     if ('animationName' in node.style) {
       node.style.animationPlayState = 'paused';
     }
@@ -125,6 +125,7 @@ const CSSAnimation = props => {
 };
 
 CSSAnimation.defaultProps = defaultProps;
+
 CSSAnimation.propTypes = {
   ...propTypes,
   onEnter: PropTypes.func,
