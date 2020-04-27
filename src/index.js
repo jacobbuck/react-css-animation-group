@@ -1,4 +1,2 @@
-import CSSAnimation from './CSSAnimation';
-import CSSAnimationGroup from './CSSAnimationGroup';
-
-export { CSSAnimation, CSSAnimationGroup };
+export { default as CSSAnimation } from './CSSAnimation';
+export { default as CSSAnimationGroup } from './CSSAnimationGroup';
