@@ -2,23 +2,23 @@
 
 Use [CSS Animations](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations) when a React component enters or leaves the DOM.
 
-Based on  [`react-transition-group`](https://github.com/reactjs/react-transition-group).
+Based on [`react-transition-group`](https://github.com/reactjs/react-transition-group).
 
 ## Usage
 
 ### Example
 
 ```jsx
-  <CSSAnimationGroup
-    enterAnimation="bounceIn"
-    enterDuration="200ms"
-    enterTimingFunction="ease"
-    exitAnimation="fadeOut"
-    exitDuration="150ms"
-    exitTimingFunction="linear"
-  >
-    {children}
-  </CSSAnimationGroup>
+<CSSAnimationGroup
+  enterAnimation="bounceIn"
+  enterDuration="200ms"
+  enterTimingFunction="ease"
+  exitAnimation="fadeOut"
+  exitDuration="150ms"
+  exitTimingFunction="linear"
+>
+  {children}
+</CSSAnimationGroup>
 ```
 
 ### Properties
