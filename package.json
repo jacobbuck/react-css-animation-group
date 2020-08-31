@@ -36,14 +36,14 @@
     "react-transition-group": "^4.4.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.6",
-    "@babel/preset-env": "^7.9.6",
-    "@babel/preset-react": "^7.9.4",
+    "@babel/core": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.6",
-    "prettier": "^2.0.5",
-    "rollup": "^2.10.9",
-    "rollup-plugin-babel": "^4.4.0"
+    "lint-staged": "^10.2.13",
+    "prettier": "^2.1.1",
+    "rollup": "^2.26.8"
   },
   "peerDependencies": {
     "react": ">=16.6.0"
