@@ -57,9 +57,11 @@ const CSSAnimationGroup = (props) => {
 
 CSSAnimationGroup.defaultProps = defaultProps;
 
-CSSAnimationGroup.propTypes = {
-  ...propTypes,
-  children: PropTypes.node,
-};
+if (process.env.NODE_ENV !== 'production') {
+  CSSAnimationGroup.propTypes = {
+    ...propTypes,
+    children: PropTypes.node,
+  };
+}
 
 export default CSSAnimationGroup;

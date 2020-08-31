@@ -126,14 +126,16 @@ const CSSAnimation = (props) => {
 
 CSSAnimation.defaultProps = defaultProps;
 
-CSSAnimation.propTypes = {
-  ...propTypes,
-  onEnter: PropTypes.func,
-  onEntering: PropTypes.func,
-  onEntered: PropTypes.func,
-  onExit: PropTypes.func,
-  onExiting: PropTypes.func,
-  onExited: PropTypes.func,
-};
+if (process.env.NODE_ENV !== 'production') {
+  CSSAnimation.propTypes = {
+    ...propTypes,
+    onEnter: PropTypes.func,
+    onEntering: PropTypes.func,
+    onEntered: PropTypes.func,
+    onExit: PropTypes.func,
+    onExiting: PropTypes.func,
+    onExited: PropTypes.func,
+  };
+}
 
 export default CSSAnimation;
