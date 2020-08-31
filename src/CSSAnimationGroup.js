@@ -22,12 +22,12 @@ const CSSAnimationGroup = (props) => {
     exitFillMode,
     exitIterationCount,
     exitTimingFunction,
-    ...restProps
+    ...rest
   } = props;
 
   return (
     <TransitionGroup
-      {...restProps}
+      {...rest}
       childFactory={(child) =>
         React.cloneElement(child, {
           enterAnimation,
@@ -55,7 +55,10 @@ const CSSAnimationGroup = (props) => {
   );
 };
 
-CSSAnimationGroup.defaultProps = defaultProps;
+CSSAnimationGroup.defaultProps = {
+  ...defaultProps,
+  children: null,
+};
 
 if (process.env.NODE_ENV !== 'production') {
   CSSAnimationGroup.propTypes = {

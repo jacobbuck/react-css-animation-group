@@ -33,7 +33,7 @@ const CSSAnimation = (props) => {
     onExit,
     onExiting,
     onExited,
-    ...restProps
+    ...rest
   } = props;
 
   const handleEnter = (node) => {
@@ -112,7 +112,7 @@ const CSSAnimation = (props) => {
 
   return (
     <Transition
-      {...restProps}
+      {...rest}
       addEndListener={addEndListener}
       onEnter={handleEnter}
       onEntering={handleEntering}
@@ -124,7 +124,15 @@ const CSSAnimation = (props) => {
   );
 };
 
-CSSAnimation.defaultProps = defaultProps;
+CSSAnimation.defaultProps = {
+  ...defaultProps,
+  onEnter: null,
+  onEntering: null,
+  onEntered: null,
+  onExit: null,
+  onExiting: null,
+  onExited: null,
+};
 
 if (process.env.NODE_ENV !== 'production') {
   CSSAnimation.propTypes = {
