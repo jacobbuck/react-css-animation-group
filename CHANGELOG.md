@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added [@babel/runtime](https://www.npmjs.com/package/@babel/runtime) for Babel helpers.
+- Added `defaultProps` for all props in `CSSAnimation` and `CSSAnimationGroup` components.
+
+### Changed
+
+- Updated devDependencies.
+- Updated `propTypes` to only be defined in non-production environments.
+
 ## v2.2.0 - 2020-05-26
 
 ### Changed
