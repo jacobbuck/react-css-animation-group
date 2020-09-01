@@ -4,9 +4,10 @@ import { Transition } from 'react-transition-group';
 import normalizeTime from './utils/normalizeTime';
 import defaultProps from './utils/defaultProps';
 import propTypes from './utils/propTypes';
+import supportsAnimation from './utils/supportsAnimation';
 
 const addEndListener = (node, done) => {
-  if ('animationName' in node.style) {
+  if (supportsAnimation(node)) {
     node.addEventListener('animationend', done, false);
   }
 };
@@ -37,7 +38,7 @@ const CSSAnimation = (props) => {
   } = props;
 
   const handleEnter = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animation = '0s none';
     }
 
@@ -47,7 +48,7 @@ const CSSAnimation = (props) => {
   };
 
   const handleEntering = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animationName = enterAnimation;
       node.style.animationDuration = normalizeTime(enterDuration);
       node.style.animationTimingFunction = enterTimingFunction;
@@ -64,7 +65,7 @@ const CSSAnimation = (props) => {
   };
 
   const handleEntered = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animationPlayState = 'paused';
     }
 
@@ -74,7 +75,7 @@ const CSSAnimation = (props) => {
   };
 
   const handleExit = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animation = '0s none';
     }
 
@@ -84,7 +85,7 @@ const CSSAnimation = (props) => {
   };
 
   const handleExiting = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animationName = exitAnimation;
       node.style.animationDuration = normalizeTime(exitDuration);
       node.style.animationTimingFunction = exitTimingFunction;
@@ -101,7 +102,7 @@ const CSSAnimation = (props) => {
   };
 
   const handleExited = (node) => {
-    if ('animationName' in node.style) {
+    if (supportsAnimation(node)) {
       node.style.animationPlayState = 'paused';
     }
 
