@@ -2,8 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { TransitionGroup } from 'react-transition-group';
 import CSSAnimation from './CSSAnimation';
-import defaultProps from './utils/defaultProps';
-import propTypes from './utils/propTypes';
+import { directionType, fillModeType, timeType } from './utils/propTypes';
 
 const CSSAnimationGroup = ({
   children = null,
@@ -53,8 +52,21 @@ const CSSAnimationGroup = ({
 
 if (process.env.NODE_ENV !== 'production') {
   CSSAnimationGroup.propTypes = {
-    ...propTypes,
     children: PropTypes.node,
+    enterAnimation: PropTypes.string,
+    enterDelay: timeType,
+    enterDirection: directionType,
+    enterDuration: timeType,
+    enterFillMode: fillModeType,
+    enterIterationCount: PropTypes.number,
+    enterTimingFunction: PropTypes.string,
+    exitAnimation: PropTypes.string,
+    exitDelay: timeType,
+    exitDirection: directionType,
+    exitDuration: timeType,
+    exitFillMode: fillModeType,
+    exitIterationCount: PropTypes.number,
+    exitTimingFunction: PropTypes.string,
   };
 }
 
