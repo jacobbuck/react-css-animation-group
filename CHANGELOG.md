@@ -1,5 +1,21 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added cleanup to `animationend` event listeners.
+
+### Changed
+
+- Refactored internals for less duplication of code.
+- Updated devDependencies.
+- Updated React import to avoid using default import.
+
+### Removed
+
+- Removed `defaultProps` in favour of default values in object destructuring.
+
 ## v2.3.0 - 2020-09-01
 
 ### Added
