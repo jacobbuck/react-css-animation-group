@@ -12,31 +12,29 @@ const addEndListener = (node, done) => {
   }
 };
 
-const CSSAnimation = (props) => {
-  const {
-    enterAnimation,
-    enterDelay,
-    enterDirection,
-    enterDuration,
-    enterFillMode,
-    enterIterationCount,
-    enterTimingFunction,
-    exitAnimation,
-    exitDelay,
-    exitDirection,
-    exitDuration,
-    exitFillMode,
-    exitIterationCount,
-    exitTimingFunction,
-    onEnter,
-    onEntering,
-    onEntered,
-    onExit,
-    onExiting,
-    onExited,
-    ...rest
-  } = props;
-
+const CSSAnimation = ({
+  enterAnimation,
+  enterDelay,
+  enterDirection,
+  enterDuration,
+  enterFillMode,
+  enterIterationCount,
+  enterTimingFunction,
+  exitAnimation,
+  exitDelay,
+  exitDirection,
+  exitDuration,
+  exitFillMode,
+  exitIterationCount,
+  exitTimingFunction,
+  onEnter,
+  onEntering,
+  onEntered,
+  onExit,
+  onExiting,
+  onExited,
+  ...rest
+}) => {
   const handleEnter = (node) => {
     if (supportsAnimation(node)) {
       node.style.animation = '0s none';
