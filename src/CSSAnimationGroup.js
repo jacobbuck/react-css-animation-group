@@ -6,21 +6,21 @@ import defaultProps from './utils/defaultProps';
 import propTypes from './utils/propTypes';
 
 const CSSAnimationGroup = ({
-  children,
-  enterAnimation,
-  enterDelay,
-  enterDirection,
-  enterDuration,
-  enterFillMode,
-  enterIterationCount,
-  enterTimingFunction,
-  exitAnimation,
-  exitDelay,
-  exitDirection,
-  exitDuration,
-  exitFillMode,
-  exitIterationCount,
-  exitTimingFunction,
+  children = null,
+  enterAnimation = '',
+  enterDelay = 0,
+  enterDirection = 'normal',
+  enterDuration = 0,
+  enterFillMode = 'none',
+  enterIterationCount = 1,
+  enterTimingFunction = 'ease',
+  exitAnimation = '',
+  exitDelay = 0,
+  exitDirection = 'normal',
+  exitDuration = 0,
+  exitFillMode = 'none',
+  exitIterationCount = 1,
+  exitTimingFunction = 'ease',
   ...rest
 }) => (
   <TransitionGroup
@@ -50,11 +50,6 @@ const CSSAnimationGroup = ({
     )}
   </TransitionGroup>
 );
-
-CSSAnimationGroup.defaultProps = {
-  ...defaultProps,
-  children: null,
-};
 
 if (process.env.NODE_ENV !== 'production') {
   CSSAnimationGroup.propTypes = {

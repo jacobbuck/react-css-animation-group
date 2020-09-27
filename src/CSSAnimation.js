@@ -13,26 +13,26 @@ const addEndListener = (node, done) => {
 };
 
 const CSSAnimation = ({
-  enterAnimation,
-  enterDelay,
-  enterDirection,
-  enterDuration,
-  enterFillMode,
-  enterIterationCount,
-  enterTimingFunction,
-  exitAnimation,
-  exitDelay,
-  exitDirection,
-  exitDuration,
-  exitFillMode,
-  exitIterationCount,
-  exitTimingFunction,
-  onEnter,
-  onEntering,
-  onEntered,
-  onExit,
-  onExiting,
-  onExited,
+  enterAnimation = '',
+  enterDelay = 0,
+  enterDirection = 'normal',
+  enterDuration = 0,
+  enterFillMode = 'none',
+  enterIterationCount = 1,
+  enterTimingFunction = 'ease',
+  exitAnimation = '',
+  exitDelay = 0,
+  exitDirection = 'normal',
+  exitDuration = 0,
+  exitFillMode = 'none',
+  exitIterationCount = 1,
+  exitTimingFunction = 'ease',
+  onEnter = null,
+  onEntering = null,
+  onEntered = null,
+  onExit = null,
+  onExiting = null,
+  onExited = null,
   ...rest
 }) => {
   const handleEnter = (node) => {
@@ -121,16 +121,6 @@ const CSSAnimation = ({
       onExited={handleExited}
     />
   );
-};
-
-CSSAnimation.defaultProps = {
-  ...defaultProps,
-  onEnter: null,
-  onEntering: null,
-  onEntered: null,
-  onExit: null,
-  onExiting: null,
-  onExited: null,
 };
 
 if (process.env.NODE_ENV !== 'production') {
