@@ -7,9 +7,15 @@ import supportsAnimation from './utils/supportsAnimation';
 
 const addEndListener = (node, done) => {
   if (supportsAnimation(node)) {
-    node.addEventListener('animationend', done, false);
+    const handleAnimationEnd = () => {
+      done();
+      node.removeEventListener('animationend', handleAnimationEnd, false);
+    };
+    node.addEventListener('animationend', handleAnimationEnd, false);
   }
 };
+
+const noop = () => {};
 
 const CSSAnimation = ({
   enterAnimation = '',
@@ -26,22 +32,19 @@ const CSSAnimation = ({
   exitFillMode = 'none',
   exitIterationCount = 1,
   exitTimingFunction = 'ease',
-  onEnter = null,
-  onEntering = null,
-  onEntered = null,
-  onExit = null,
-  onExiting = null,
-  onExited = null,
+  onEnter = noop,
+  onEntering = noop,
+  onEntered = noop,
+  onExit = noop,
+  onExiting = noop,
+  onExited = noop,
   ...rest
 }) => {
   const handleEnter = (node) => {
     if (supportsAnimation(node)) {
       node.style.animation = '0s none';
     }
-
-    if (onEnter) {
-      onEnter(node);
-    }
+    onEnter(node);
   };
 
   const handleEntering = (node) => {
@@ -55,30 +58,21 @@ const CSSAnimation = ({
       node.style.animationFillMode = enterFillMode;
       node.style.animationPlayState = 'running';
     }
-
-    if (onEntering) {
-      onEntering(node);
-    }
+    onEntering(node);
   };
 
   const handleEntered = (node) => {
     if (supportsAnimation(node)) {
       node.style.animationPlayState = 'paused';
     }
-
-    if (onEntered) {
-      onEntered(node);
-    }
+    onEntered(node);
   };
 
   const handleExit = (node) => {
     if (supportsAnimation(node)) {
       node.style.animation = '0s none';
     }
-
-    if (onExit) {
-      onExit(node);
-    }
+    onExit(node);
   };
 
   const handleExiting = (node) => {
@@ -92,20 +86,14 @@ const CSSAnimation = ({
       node.style.animationFillMode = exitFillMode;
       node.style.animationPlayState = 'running';
     }
-
-    if (onExiting) {
-      onExiting(node);
-    }
+    onExiting(node);
   };
 
   const handleExited = (node) => {
     if (supportsAnimation(node)) {
       node.style.animationPlayState = 'paused';
     }
-
-    if (onExited) {
-      onExited(node);
-    }
+    onExited(node);
   };
 
   return (
