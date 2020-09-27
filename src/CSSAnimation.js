@@ -15,6 +15,34 @@ const addEndListener = (node, done) => {
   }
 };
 
+const resetAnimation = (node) => {
+  if (supportsAnimation(node)) {
+    node.style.animation = '0s none';
+  }
+};
+
+const startAnimation = (
+  node,
+  { name, duration, timingFunction, delay, direction, iterationCount, fillMode }
+) => {
+  if (supportsAnimation(node)) {
+    node.style.animationName = name;
+    node.style.animationDuration = normalizeTime(duration);
+    node.style.animationTimingFunction = timingFunction;
+    node.style.animationDelay = normalizeTime(delay);
+    node.style.animationDirection = direction;
+    node.style.animationIterationCount = iterationCount;
+    node.style.animationFillMode = fillMode;
+    node.style.animationPlayState = 'running';
+  }
+};
+
+const stopAnimation = (node) => {
+  if (supportsAnimation(node)) {
+    node.style.animationPlayState = 'paused';
+  }
+};
+
 const noop = () => {};
 
 const CSSAnimation = ({
@@ -39,76 +67,52 @@ const CSSAnimation = ({
   onExiting = noop,
   onExited = noop,
   ...rest
-}) => {
-  const handleEnter = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animation = '0s none';
-    }
-    onEnter(node);
-  };
-
-  const handleEntering = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animationName = enterAnimation;
-      node.style.animationDuration = normalizeTime(enterDuration);
-      node.style.animationTimingFunction = enterTimingFunction;
-      node.style.animationDelay = normalizeTime(enterDelay);
-      node.style.animationDirection = enterDirection;
-      node.style.animationIterationCount = enterIterationCount;
-      node.style.animationFillMode = enterFillMode;
-      node.style.animationPlayState = 'running';
-    }
-    onEntering(node);
-  };
-
-  const handleEntered = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animationPlayState = 'paused';
-    }
-    onEntered(node);
-  };
-
-  const handleExit = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animation = '0s none';
-    }
-    onExit(node);
-  };
-
-  const handleExiting = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animationName = exitAnimation;
-      node.style.animationDuration = normalizeTime(exitDuration);
-      node.style.animationTimingFunction = exitTimingFunction;
-      node.style.animationDelay = normalizeTime(exitDelay);
-      node.style.animationDirection = exitDirection;
-      node.style.animationIterationCount = exitIterationCount;
-      node.style.animationFillMode = exitFillMode;
-      node.style.animationPlayState = 'running';
-    }
-    onExiting(node);
-  };
-
-  const handleExited = (node) => {
-    if (supportsAnimation(node)) {
-      node.style.animationPlayState = 'paused';
-    }
-    onExited(node);
-  };
-
-  return (
-    <Transition
-      {...rest}
-      addEndListener={addEndListener}
-      onEnter={handleEnter}
-      onEntering={handleEntering}
-      onEntered={handleEntered}
-      onExit={handleExit}
-      onExiting={handleExiting}
-      onExited={handleExited}
-    />
-  );
-};
+}) => (
+  <Transition
+    {...rest}
+    addEndListener={addEndListener}
+    onEnter={(node) => {
+      resetAnimation(node);
+      onEnter(node);
+    }}
+    onEntering={(node) => {
+      startAnimation(node, {
+        name: enterAnimation,
+        duration: enterDuration,
+        timingFunction: enterTimingFunction,
+        delay: enterDelay,
+        direction: enterDirection,
+        iterationCount: enterIterationCount,
+        fillMode: enterFillMode,
+      });
+      onEntering(node);
+    }}
+    onEntered={(node) => {
+      stopAnimation(node);
+      onEntered(node);
+    }}
+    onExit={(node) => {
+      resetAnimation(node);
+      onExit(node);
+    }}
+    onExiting={(node) => {
+      startAnimation(node, {
+        name: exitAnimation,
+        duration: exitDuration,
+        timingFunction: exitTimingFunction,
+        delay: exitDelay,
+        direction: exitDirection,
+        iterationCount: exitIterationCount,
+        fillMode: exitFillMode,
+      });
+      onExiting(node);
+    }}
+    onExited={(node) => {
+      stopAnimation(node);
+      onExited(node);
+    }}
+  />
+);
 
 if (process.env.NODE_ENV !== 'production') {
   CSSAnimation.propTypes = {
