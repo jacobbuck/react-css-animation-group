@@ -5,6 +5,7 @@
 ### Added
 
 - Added cleanup to `animationend` event listeners.
+- Added source maps to build output.
 
 ### Changed
 
