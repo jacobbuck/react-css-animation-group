@@ -50,24 +50,22 @@ const CSSAnimationGroup = ({
   </TransitionGroup>
 );
 
-if (process.env.NODE_ENV !== 'production') {
-  CSSAnimationGroup.propTypes = {
-    children: PropTypes.node,
-    enterAnimation: PropTypes.string,
-    enterDelay: timeType,
-    enterDirection: directionType,
-    enterDuration: timeType,
-    enterFillMode: fillModeType,
-    enterIterationCount: PropTypes.number,
-    enterTimingFunction: PropTypes.string,
-    exitAnimation: PropTypes.string,
-    exitDelay: timeType,
-    exitDirection: directionType,
-    exitDuration: timeType,
-    exitFillMode: fillModeType,
-    exitIterationCount: PropTypes.number,
-    exitTimingFunction: PropTypes.string,
-  };
-}
+CSSAnimationGroup.propTypes = {
+  children: PropTypes.node,
+  enterAnimation: PropTypes.string,
+  enterDelay: timeType,
+  enterDirection: directionType,
+  enterDuration: timeType,
+  enterFillMode: fillModeType,
+  enterIterationCount: PropTypes.number,
+  enterTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
+};
 
 export default CSSAnimationGroup;

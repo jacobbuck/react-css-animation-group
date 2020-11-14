@@ -114,29 +114,27 @@ const CSSAnimation = ({
   />
 );
 
-if (process.env.NODE_ENV !== 'production') {
-  CSSAnimation.propTypes = {
-    enterAnimation: PropTypes.string,
-    enterDelay: timeType,
-    enterDirection: directionType,
-    enterDuration: timeType,
-    enterFillMode: fillModeType,
-    enterIterationCount: PropTypes.number,
-    enterTimingFunction: PropTypes.string,
-    exitAnimation: PropTypes.string,
-    exitDelay: timeType,
-    exitDirection: directionType,
-    exitDuration: timeType,
-    exitFillMode: fillModeType,
-    exitIterationCount: PropTypes.number,
-    exitTimingFunction: PropTypes.string,
-    onEnter: PropTypes.func,
-    onEntering: PropTypes.func,
-    onEntered: PropTypes.func,
-    onExit: PropTypes.func,
-    onExiting: PropTypes.func,
-    onExited: PropTypes.func,
-  };
-}
+CSSAnimation.propTypes = {
+  enterAnimation: PropTypes.string,
+  enterDelay: timeType,
+  enterDirection: directionType,
+  enterDuration: timeType,
+  enterFillMode: fillModeType,
+  enterIterationCount: PropTypes.number,
+  enterTimingFunction: PropTypes.string,
+  exitAnimation: PropTypes.string,
+  exitDelay: timeType,
+  exitDirection: directionType,
+  exitDuration: timeType,
+  exitFillMode: fillModeType,
+  exitIterationCount: PropTypes.number,
+  exitTimingFunction: PropTypes.string,
+  onEnter: PropTypes.func,
+  onEntering: PropTypes.func,
+  onEntered: PropTypes.func,
+  onExit: PropTypes.func,
+  onExiting: PropTypes.func,
+  onExited: PropTypes.func,
+};
 
 export default CSSAnimation;
