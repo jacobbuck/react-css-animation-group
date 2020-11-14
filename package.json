@@ -1,6 +1,6 @@
 {
   "name": "react-css-animation-group",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Use CSS Animations when a React component enters or leaves the DOM.",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
